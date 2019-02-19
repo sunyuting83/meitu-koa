@@ -1,7 +1,7 @@
 const Bookshelf = require('./base')();
 
 var Liked = Bookshelf.Model.extend({
-    tableName: 'guomo_users',
+    tableName: 'picture_users',
     users: function () {
         return this.hasMany(require('./users'));
     },

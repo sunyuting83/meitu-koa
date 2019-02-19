@@ -7,7 +7,7 @@ var Users = bookshelf.Model.extend({
         return this.belongsToMany(require('./picture')).through(require('./liked'));
     },
     follow: function () {
-        return this.belongsToMany(require('./picture')).through(require('./follow'));
+        return this.belongsToMany(require('./girl')).through(require('./follow'));
     }
 });
 
