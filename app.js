@@ -1,8 +1,10 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-// 导入controller middleware:
+// 导入controller middleware:                 
+const Koa_Logger = require("koa-logger");
 const router = require('./router');
 const app = new Koa();
+const logger = Koa_Logger();
 
 // 检测token
 const {
@@ -11,7 +13,7 @@ const {
 
 // log request URL:
 app.use(async (ctx, next) => {
-    console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+    // console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
     var token = ctx.header.authorization || '';
     if (token.length > 0) {
         let user = await checkToken(token, true);
@@ -27,6 +29,7 @@ app.use(async (ctx, next) => {
 // add router middleware:
 app.use(bodyParser());
 // 使用middleware:
+app.use(logger);
 app.use(router());
 
 app.listen(3000);

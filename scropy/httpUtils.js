@@ -14,7 +14,7 @@ let HttpGet = async (url) => {
                     resolve(res.text)
                 })
                 .catch((e) => {
-                    console.log(e,'1');
+                    process.exit();
                 });
         }
     });

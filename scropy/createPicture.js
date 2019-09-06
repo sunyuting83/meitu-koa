@@ -15,6 +15,7 @@ const {
     getGirl,
     checkGirl
 } = require('./getGirl');
+const makeNewArr = require('./cgdata');
 
 let createPicture = async (url) => {
     return new Promise(async (resolve, reject) => {
@@ -100,6 +101,12 @@ var createPicJson = (data) => {
                 let temp = imglist.slice(i * num, i * num + num);
                 imgcontent.push(temp);
             };
+            let checkPic = await checkIgnore(thisurl);
+            if (checkPic === false) {
+                await sleep(1000 * 30);
+                imgcontent = await makeNewArr(imgcontent);
+            };
+            imgcontent = JSON.stringify(imgcontent);
             // console.log(imgcont,imgcontent);
             // 模特信息检测，入库操作之后，进行图集信息入库
             let jdata = {

@@ -25,8 +25,16 @@ coverage
 build/Release
 scropy/ceshi.js
 scropy/scropy_fun.js
+scropy/cgdata.js
 
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
 model/db_config.json
+
+meitu.backup
+TagDB
+g.zip
+girlimg.backup
+meitu1.backup
+SQL.txt

@@ -18,6 +18,7 @@ let getImgSize = async (imgUrl) => {
                 chunks.push(chunk);
             }).on('end', function () {
                 var buffer = Buffer.concat(chunks);
+                // console.log(sizeOf(buffer));
                 resolve(sizeOf(buffer));
             });
         });

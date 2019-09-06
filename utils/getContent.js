@@ -1,7 +1,5 @@
 const Picture = require('../model/picture');
-const {
-    StrToArray
-} = require('./utils');
+const makeTags = require('./tagdata');
 
 /**
  * 获取详情数据
@@ -23,6 +21,7 @@ let getContent = async (id, user) => {
                 columns: ['id', 'click_count'],
                 withRelated: [
                     'images',
+                    'tags',
                     'liked', {
                         'liked': (qb) => {
                             if (status === true) {
@@ -38,10 +37,12 @@ let getContent = async (id, user) => {
                      * 大坑。注意先要把数据转换成json再加1 入库
                      */
                     let jdata = data.toJSON();
+                    // console.log(jdata.tags);
                     if (status === true) {
                         data.save({
                             click_count: parseInt(jdata.click_count + 1)
                         });
+                        makeTags(user.id,jdata.tags);
                     };
                     let ContentData = makeContentJson(data, status);
                     resolve(ContentData);
@@ -66,9 +67,13 @@ let makeContentJson = (data, status) => {
     var d = data.toJSON();
     delete d.images.id;
     delete d.images.picture_id;
-    var imglist = StrToArray(d.images.content);
+    delete d.tags;
+    // var imglist = StrToArray(d.images.content);
+    var imglist = JSON.parse(d.images.content);
+    d.login = 0;
     if (status === false) {
         imglist = [imglist[0]];
+        d.login = 1;
         delete d.liked;
     };
     d['images']['content'] = imglist;

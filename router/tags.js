@@ -2,7 +2,8 @@ const getTags = require('../utils/getTags');
 var fn_tags = async (ctx, next) => {
     let id = ctx.request.query.id;
     let page = ctx.request.query.page;
-    let data = await getTags(id, page);
+    let user = ctx.state.current_user;
+    let data = await getTags(id, page, user);
     ctx.response.body = data;
     await next();
 };

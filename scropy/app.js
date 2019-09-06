@@ -18,6 +18,6 @@ let scrapy = () => {
 scrapy().then((data) => {
     console.log('采集完成');
     if (data === true) {
-        process.exit();
+        // process.exit();
     }
 });

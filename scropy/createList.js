@@ -10,12 +10,12 @@ const createPicture = require('./createPicture');
 var rooturl = 'https://www.meituri.com/';
 
 var listurl = [
-    'zhongguo/58',
-    'riben/54',
-    'taiwan/58',
+    'zhongguo/10',
+    'riben/10',
+    'taiwan/10',
     'hanguo/3',
-    'oumei/21',
-    'taiguo/22'
+    'oumei/10',
+    'taiguo/10'
 ];
 
 let createList = () => {
