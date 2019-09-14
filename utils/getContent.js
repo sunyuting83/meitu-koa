@@ -1,6 +1,6 @@
 const Picture = require('../model/picture');
 const makeTags = require('./tagdata');
-
+const _ = require('lodash');
 /**
  * 获取详情数据
  * @param Number id 详情id
@@ -70,13 +70,27 @@ let makeContentJson = (data, status) => {
     delete d.tags;
     // var imglist = StrToArray(d.images.content);
     var imglist = JSON.parse(d.images.content);
+    imglist = _.flatten(imglist, true);
+    // console.log(imglist);
+    imglist.forEach(i => {
+        i.uri = i.url;
+        delete i.url;
+        i['dimensions'] = {
+            width: i.width,
+            height: i.height
+        };
+        delete i.width;
+        delete i.height;
+        // console.log(i);
+    });
     d.login = 0;
     if (status === false) {
-        imglist = [imglist[0]];
+        imglist = _.take(imglist, 10);
         d.login = 1;
         delete d.liked;
     };
     d['images']['content'] = imglist;
+    d = {...d,count: imglist.length}
     return d;
 };
 

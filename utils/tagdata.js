@@ -39,7 +39,7 @@ function checkArr(oldArray, newArray) {
     // 对比两个数组，有新元素加入到旧数组
     newArray.forEach(item => {
         if (oldArray.every(it => it.id !== item.id)) {
-            oldArray.push(item)
+            oldArray = [...oldArray, item]
         }
     });
     return oldArray;

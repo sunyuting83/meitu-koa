@@ -37,6 +37,11 @@ getTags = async (id, page, user) => {
                 // console.log(count);
                 if (data) {
                     let datas = data.toJSON();
+                    if (user && page == 1) {
+                        data.save({
+                            click_count: parseInt(datas.click_count + 1)
+                        });
+                    };
                     datas = makeJson(datas);
                     datas['tagcount'] = count;
                     resolve(datas);
@@ -104,14 +109,14 @@ let makeTagArr = async(user,id) => {
         });
         // console.log(hasid, tagArr[hasid]);
         if (hasid == -1) {
-            tagArr.push({id:id,count:1})
+            tagArr = [...tagArr,{id:id,count:1}];
         }else {
             let id_count = tagArr[hasid].count;
             id_count = id_count + 1;
         };
     }else {
         tagArr = [];
-        tagArr.push({id:id,count:1});
+        tagArr = [...tagArr,{id:id,count:1}];
     };
     saveTags(user, tagArr);
 };
