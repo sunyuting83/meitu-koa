@@ -17,6 +17,7 @@ const makeNewArr = require('./cgdata');
 
 let getNav = async(id) => {
     // let urlList = makeUrl();
+    console.log(id);
     const url = `https://www.meituri.com/a/${id}/`;
     let checkPic = await checkIgnore(url);
     if (checkPic === false) {
@@ -203,5 +204,5 @@ let makeImgRootUrl = function (url) {
     return iurl;
 };
 
-var id = process.argv.splice(2);
+var id = process.argv.splice(2)[0];
 getNav(id)

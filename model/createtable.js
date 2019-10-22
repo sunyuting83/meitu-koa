@@ -8,6 +8,7 @@ Bookshelf.knex.schema.createTable('girl', function (table) {
         table.string('mname', 100);
         table.text('intro');
         table.string('cover', 100);
+        table.integer('click_count').defaultTo(0);
         table.index('id', ['ix_girl_id']);
         table.comment('模特表');
     })
@@ -34,6 +35,7 @@ Bookshelf.knex.schema.createTable('girl', function (table) {
     .createTable('tags', function (table) {
         table.increments('id').primary();
         table.string('tags', 100);
+        table.integer('click_count').defaultTo(0);
         table.index('id', ['ix_tags_id']);
         table.comment('TAG表');
     })

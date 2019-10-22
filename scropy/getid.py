@@ -16,6 +16,7 @@ def startApp():
 		try:
 			dk = '%s%s' % ('node getid ',next(url))
 			try:
+				print(url)
 				(status, output) = commands.getstatusoutput(dk)
 				print(output)
 			except Exception as e:
@@ -25,8 +26,8 @@ def startApp():
 		except Exception as e:
 			pass
 			sys.close()
-	
 
-if __name__ == '__main__':	
+
+if __name__ == '__main__':
 	startApp()
 
