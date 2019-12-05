@@ -1,8 +1,15 @@
 var superagent = require('superagent');
+<<<<<<< HEAD
 var sleep = require('system-sleep');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // 解决https无法访问的问题
 let HttpGet = async (url) => {
     await sleep(200);
+=======
+// var sleep = require('system-sleep');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // 解决https无法访问的问题
+let HttpGet = async (url) => {
+    // await sleep(200);
+>>>>>>> master
     var ip = Math.floor((Math.random()*254)+1)
     + "." + Math.floor((Math.random()*254)+1)
     + "." + Math.floor((Math.random()*254)+1)
